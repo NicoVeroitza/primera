@@ -43,19 +43,22 @@ public class EnvioController {
     //End-point que devuelve una envio según su ID
     @GetMapping("/envios/{id}")
     public String buscarEnvio(@PathVariable("id") int id) {
-        for(Envio envio : envios){
+        try {
+            for(Envio envio : envios){
             
-            if(envio.getId() == id){
-                // Use un salto de línea de HTML para que se vea mejor
-                return "Fecha y hora de envio: " + envio.getFecha().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).toString() + 
-                "</br>" +  "Nombre de cliente: " + envio.getNombreApellido() + 
-                "</br>" + "Estado/ubicación del envío: " + envio.getUbicacion();
-            }
+                if(envio.getId() == id){
+                    // Use un salto de línea de HTML para que se vea mejor
+                    return "Fecha y hora de envio: " + envio.getFecha().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).toString() + 
+                    "</br>" +  "Nombre de cliente: " + envio.getNombreApellido() + 
+                    "</br>" + "Estado/ubicación del envío: " + envio.getUbicacion();
+                }  
+            }  
+            return "No existe este envío.";
             
+        } catch (Exception e) {
+            return "Ingrese un ID numérico";
         }
-        
-        return "No existe este envío.";
-        
+     
     }
     
 }

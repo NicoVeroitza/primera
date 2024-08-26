@@ -42,18 +42,27 @@ public class CitaController {
        Ingresar fecha y hora en formato definido en el Parse dentro de la función */
     @GetMapping("/citas/{fecha}/{hora}")
     public String checkearDisponibilidad(@PathVariable("fecha") String fecha, @PathVariable("hora") String hora) {
-        String fechaIngresada = fecha + " " + hora;
-        LocalDateTime fechaQuery = LocalDateTime.parse(fechaIngresada, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        try{
 
-        /* Comprueba si la fecha ingresada es igual a alguna fecha de alguna cita ya ingresada 
-           La comparación es simple debido a la naturaleza de la evaluación, obviamente habría que crear un rango de tiempo para comparar en vez de simplemente una hora puntual*/ 
-        for (Cita cita : citas){
-            if(fechaQuery.isEqual(cita.getFechaHora())){
-                return "No está disponible esta hora.";
+            String fechaIngresada = fecha + " " + hora;
+        
+            LocalDateTime fechaQuery = LocalDateTime.parse(fechaIngresada, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        
+  
+            /* Comprueba si la fecha ingresada es igual a alguna fecha de alguna cita ya ingresada 
+            La comparación es simple debido a la naturaleza de la evaluación, obviamente habría que crear un rango de tiempo para comparar en vez de simplemente una hora puntual*/ 
+            for (Cita cita : citas){
+                if(fechaQuery.isEqual(cita.getFechaHora())){
+                    return "No está disponible esta hora.";
+                }
             }
-        }
 
-        return "Hora disponible para cita médica";
+            return "Hora disponible para cita médica";
+
+        }catch(Exception e){
+            return "Ingrese formato de fecha/hora correctos (dia-mes-año/hora:minutos)";
+        }
+        
     }
     
     
