@@ -49,7 +49,7 @@ public class CitaServiceImpl implements CitaService{
 
         }else{
 
-            return "Toda las horas disponibles";
+            return "Todas las horas disponibles";
         }
     }
 }
