@@ -1,17 +1,13 @@
 package com.sumativa.primera.service;
 
-import org.hibernate.annotations.DialectOverride.OverridesAnnotation;
-import org.hibernate.tool.schema.spi.ExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sumativa.primera.DTO.EnvioDTO;
+import com.sumativa.primera.dto.EnvioDTO;
 import com.sumativa.primera.model.Envio;
 import com.sumativa.primera.repository.EnvioRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,7 +42,7 @@ public class EnvioServiceImpl implements EnvioService{
         Optional<Envio> queryEnvio = envioRepository.findById(id);
         if(queryEnvio.isPresent()){
             Envio envio = queryEnvio.get();
-            return envio.getEstadoEnvio();
+            return envio.getUbicacionActual();
         }
         else{
             return null;

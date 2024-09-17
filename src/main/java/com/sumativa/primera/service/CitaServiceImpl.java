@@ -3,6 +3,7 @@ package com.sumativa.primera.service;
 import org.hibernate.annotations.DialectOverride.OverridesAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sumativa.primera.model.Cita;
 import com.sumativa.primera.repository.CitaRepository;
@@ -16,11 +17,39 @@ public class CitaServiceImpl implements CitaService{
     private CitaRepository citaRepository;
 
     @Override
-    public List<Cita> getAllCitas(){
-        return citaRepository.findAll();
+    public Cita crearCita(Cita cita){
+        
+        return citaRepository.save(cita);
+        
     }
 
-    public Optional<Cita> getCitaById(Long id){
-        return citaRepository.findById(id);
+    @Override
+    public String cancelarCita(Long id){
+        if(citaRepository.existsById(id)){
+            citaRepository.deleteById(id);
+
+            return "Cita cancelada";
+        }else{
+
+            return "No existe esta cita";
+        }
+
+    }
+
+    @Override
+    public String consultarDisponibilidad(String nombreDoctor){
+        List<Cita> disponibilidad = citaRepository.findByNombreDoctor(nombreDoctor);
+        if(disponibilidad!=null){
+            String texto_dispo = "Horas ocupadas: ";
+            for(Cita doctor : disponibilidad){
+                texto_dispo += " " + doctor.getFechaHora().toString() + " ";
+            }
+
+            return texto_dispo;
+
+        }else{
+
+            return "Toda las horas disponibles";
+        }
     }
 }

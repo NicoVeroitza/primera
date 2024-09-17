@@ -1,10 +1,8 @@
-package com.sumativa.primera.DTO;
+package com.sumativa.primera.dto;
 
 public class EnvioDTO {
     public Long id;
     public String estado;
 
-    public EnvioDTO(){
-        
-    }
+
 }
