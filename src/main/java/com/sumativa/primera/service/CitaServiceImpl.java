@@ -39,7 +39,7 @@ public class CitaServiceImpl implements CitaService{
     @Override
     public String consultarDisponibilidad(String nombreDoctor){
         List<Cita> disponibilidad = citaRepository.findByNombreDoctor(nombreDoctor);
-        if(disponibilidad!=null){
+        if(!disponibilidad.isEmpty()){
             String texto_dispo = "Horas ocupadas: ";
             for(Cita doctor : disponibilidad){
                 texto_dispo += " " + doctor.getFechaHora().toString() + " ";

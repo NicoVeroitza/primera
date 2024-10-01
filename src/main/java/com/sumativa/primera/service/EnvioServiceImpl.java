@@ -24,11 +24,11 @@ public class EnvioServiceImpl implements EnvioService{
     @Override
     public Envio actualizarEstadoEnvio(EnvioDTO envioDTO){
 
-        if(envioRepository.existsById(envioDTO.id)){
+        if(envioRepository.existsById(envioDTO.getId())){
 
             Envio envio = new Envio();
-            envio.setId(envioDTO.id);
-            envio.setEstadoEnvio(envioDTO.estado);
+            envio.setId(envioDTO.getId());
+            envio.setEstadoEnvio(envioDTO.getEstado());
 
             return envioRepository.save(envio);
 
