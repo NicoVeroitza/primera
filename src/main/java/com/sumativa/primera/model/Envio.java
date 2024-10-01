@@ -1,5 +1,7 @@
 package com.sumativa.primera.model;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -11,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "envio")
-public class Envio {
+public class Envio extends RepresentationModel<Envio>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

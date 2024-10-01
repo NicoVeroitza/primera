@@ -52,4 +52,16 @@ public class CitaServiceImpl implements CitaService{
             return "Todas las horas disponibles";
         }
     }
+
+    @Override
+    public Optional<Cita> getCitaById(Long id) {
+        return citaRepository.findById(id);
+    }
+
+    @Override
+    public List<Cita> getAllCitas() {
+        return citaRepository.findAll();
+    }
+
+
 }

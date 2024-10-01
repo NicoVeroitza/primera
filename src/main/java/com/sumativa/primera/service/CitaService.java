@@ -8,5 +8,7 @@ public interface CitaService {
     Cita crearCita(Cita cita);
     String cancelarCita(Long id);
     String consultarDisponibilidad(String nombreDoctor);
+    Optional<Cita> getCitaById(Long id);
+    List<Cita> getAllCitas();
     
 }
