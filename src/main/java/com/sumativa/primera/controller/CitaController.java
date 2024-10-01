@@ -54,13 +54,14 @@ public class CitaController {
         return citaService.consultarDisponibilidad(doctor);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public EntityModel<Cita> getCitaById(@PathVariable Long id){
         Optional<Cita> cita = citaService.getCitaById(id);
 
         if(cita.isPresent()){
             return EntityModel.of(cita.get(),
-                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getCitaById(id)).withSelfRel());
+                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getCitaById(id)).withSelfRel(),
+                WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllCitas()).withRel("all-citas"));
         } else {
             throw new CitaNotFoundException("Cita de ID: " + id + " no encontrada");
         }
