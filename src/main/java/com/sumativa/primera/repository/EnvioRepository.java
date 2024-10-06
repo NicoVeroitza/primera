@@ -7,4 +7,5 @@ import com.sumativa.primera.model.Envio;
 public interface EnvioRepository extends JpaRepository<Envio, Long>{
 
     Envio findByRutCliente(String rut);
+    Envio findFirstByRutCliente(String rut);
 }

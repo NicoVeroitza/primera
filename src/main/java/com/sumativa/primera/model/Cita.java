@@ -3,6 +3,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.util.Date;
+import java.time.*;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +21,7 @@ public class Cita extends RepresentationModel<Cita>{
     private Long id;
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(name = "fecha_hora")
-    private Date fechaHora;
+    private LocalDate fechaHora;
     @Column(name = "nombre_paciente")
     private String nombrePaciente;
     @Column(name = "apellido_paciente")
@@ -41,7 +42,7 @@ public class Cita extends RepresentationModel<Cita>{
         return id;
     }
 
-    public Date getFechaHora() {
+    public LocalDate getFechaHora() {
         return fechaHora;
     }
 
@@ -76,7 +77,7 @@ public class Cita extends RepresentationModel<Cita>{
         this.id = id;
     }
 
-    public void setFechaHora(Date fechaHora) {
+    public void setFechaHora(LocalDate fechaHora) {
         this.fechaHora = fechaHora;
     }
 

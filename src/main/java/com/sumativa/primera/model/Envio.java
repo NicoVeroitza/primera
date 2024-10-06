@@ -3,6 +3,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.util.Date;
+import java.time.*;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+
 
 @Entity
 @Table(name = "envio")
@@ -20,7 +23,7 @@ public class Envio extends RepresentationModel<Envio>{
     private Long id;
     @DateTimeFormat(pattern = "dd/MM/yyy")
     @Column(name = "fecha_envio")
-    private Date fechaEnvio;
+    private LocalDate fechaEnvio;
     @Column(name = "nombre_cliente")
     private String nombreCliente;
     @Column(name = "apellido_cliente")
@@ -43,7 +46,7 @@ public class Envio extends RepresentationModel<Envio>{
         return id;
     }
 
-    public Date getFechaEnvio() {
+    public LocalDate getFechaEnvio() {
         return fechaEnvio;
     }
 
@@ -82,7 +85,7 @@ public class Envio extends RepresentationModel<Envio>{
         this.id = id;
     }
 
-    public void setFechaHora(Date fechaEnvio) {
+    public void setFechaHora(LocalDate fechaEnvio) {
         this.fechaEnvio = fechaEnvio;
     }
 

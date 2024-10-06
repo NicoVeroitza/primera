@@ -9,4 +9,8 @@ public interface EnvioService {
     Envio crearNuevoEnvio(Envio envio);
     Envio actualizarEstadoEnvio(EnvioDTO envioDTO);
     String obtenerUbicacionActual(Long id);
+    Optional<Envio> getEnvioById(Long id);
+    List<Envio> getAllEnvios();
+   
 }
+

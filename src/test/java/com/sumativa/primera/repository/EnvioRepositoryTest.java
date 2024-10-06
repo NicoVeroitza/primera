@@ -1,9 +1,13 @@
 package com.sumativa.primera.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +30,7 @@ public class EnvioRepositoryTest {
 
         envio.setRutCliente("11.111.111-1");
         envio.setNombreCliente("Nicolas");
-        envio.setFechaHora(new Date());
+        envio.setFechaHora(LocalDate.now());
 
         envioRepository.save(envio);
 
@@ -41,7 +45,7 @@ public class EnvioRepositoryTest {
 
             envioRepository.save(modificacion);
 
-            Envio envioModificado = envioRepository.findByRutCliente("22.222.222-2");
+            Envio envioModificado = envioRepository.findFirstByRutCliente("22.222.222-2");
             assertNotNull(envioModificado);
             assertEquals(modificacion.getRutCliente(), envioModificado.getRutCliente());
             
@@ -49,4 +53,8 @@ public class EnvioRepositoryTest {
 
         
     }
+
+    
+
+
 }

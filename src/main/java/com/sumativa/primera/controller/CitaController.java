@@ -71,7 +71,7 @@ public class CitaController {
     public CollectionModel<EntityModel<Cita>> getAllCitas() {
         List<Cita> citas = citaService.getAllCitas();
         log.info("GET /citas");
-        log.info("Retornando todos las citas");
+        log.info("Retornando todas las citas");
         List<EntityModel<Cita>> citaResources = citas.stream()
             .map( cita -> EntityModel.of(cita,
                 WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getCitaById(cita.getId())).withSelfRel()

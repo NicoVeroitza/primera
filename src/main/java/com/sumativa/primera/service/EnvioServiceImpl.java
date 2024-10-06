@@ -9,6 +9,7 @@ import com.sumativa.primera.repository.EnvioRepository;
 
 
 import java.util.Optional;
+import java.util.List;
 
 @Service
 public class EnvioServiceImpl implements EnvioService{
@@ -48,6 +49,16 @@ public class EnvioServiceImpl implements EnvioService{
             return null;
         }
 
+    }
+
+    @Override
+    public Optional<Envio> getEnvioById(Long id) {
+        return envioRepository.findById(id);
+    }
+
+    @Override
+    public List<Envio> getAllEnvios() {
+        return envioRepository.findAll();
     }
 }
 
